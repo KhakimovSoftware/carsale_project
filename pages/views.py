@@ -7,7 +7,8 @@ class HomePageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
-        data['cars'] = CarModel.objects.filter(is_featured=True).order_by('-id')
+        data['cars'] = CarModel.objects.filter(is_featured=True).order_by()
+        data['cars'] = CarModel.objects.order_by('created_at')
         return data
 class AboutView(TemplateView):
     template_name = 'about.html'
