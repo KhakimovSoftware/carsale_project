@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'user',
     'cars',
     'contact',
+    'multiselectfield',
 
     'social_django',
     'allauth',

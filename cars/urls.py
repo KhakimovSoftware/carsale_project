@@ -1,8 +1,9 @@
 from django.urls import path, include
-from .views import CarView
+from .views import CarListView, search
 
 app_name = 'car'
 
 urlpatterns = [
-    path('', CarView.as_view(), name='cars'),
+    path('', CarListView.as_view(), name='cars'),
+    path('search/', search, name='search'),
 ]

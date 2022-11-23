@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, DetailView
 from cars.models import CarModel
 
 class HomePageView(TemplateView):
@@ -15,4 +15,9 @@ class AboutView(TemplateView):
 
 class ServiceView(TemplateView):
     template_name = 'service.html'
+
+
+class CarDetailView(DetailView):
+    model = CarModel
+    template_name = 'car_detail.html'
 
