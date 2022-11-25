@@ -55,8 +55,8 @@
 <!-- Full Page Search -->
 <div id="full-page-search">
     <button type="button" class="close">×</button>
-    <form action="{% url 'car:search' %}" class="search-header" name='keyword'>
-        <input type="search" value="" placeholder="type keyword(s) here. Eg: audi, benz etc"/>
+    <form action="{% url 'car:cars' %}" class="search-header" method="GET">
+        <input name="search" value="{{ request.GET.search }}" placeholder="type keyword(s) here. Nexia-3, malibu etc"/>
         <button type="submit" class="btn btn-sm button-theme">Search</button>
     </form>
 </div>

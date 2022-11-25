@@ -7,7 +7,7 @@
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner banner-slider-inner text-center">
                 <div class="carousel-item banner-max-height active item-bg">
-                    <img class="d-block w-100 h-100" src="{% static 'img/car-1.jpg' %}" alt="banner">
+                    <img class="d-block w-100 h-100" src="{% static 'img/equnox.jpg' %}" alt="banner">
                     <div class="carousel-content container banner-info-2 bi-2 text-left">
                         <h3>Wow Factor Standard</h3>
                         <h5>Allow us to guide you through the innovative stress<br>
@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="carousel-item banner-max-height item-bg">
-                    <img class="d-block w-100 h-100" src="{% static 'img/car-2.jpg' %}" alt="banner">
+                    <img class="d-block w-100 h-100" src="{% static 'img/banner3.jpg' %}" alt="banner">
                     <div class="carousel-content container banner-info-2 bi-2 text-left">
                         <h3>Explore Your Dream Car</h3>
                         <h5>Allow us to guide you through the innovative stress<br>
@@ -25,63 +25,49 @@
                     </div>
                 </div>
                 <div class="carousel-item banner-max-height item-bg">
-                    <img class="d-block w-100 h-100" src="{% static 'img/car-3.jpg' %}" alt="banner">
+                    <img class="d-block w-100 h-100" src="{% static 'img/onix.png' %}" alt="banner">
                     <div class="carousel-content container banner-info-2 bi-2 text-left">
-                        <h3>We Are Wheel</h3>
-                        <h5>Allow us to guide you through the innovative stress<br>
-                            free approach in finding your dream car.</h5>
-                        <a href="{% url 'pages:service' %}" class="btn btn-lg btn-theme">Read more</a>
+
                     </div>
                 </div>
             </div>
             <!-- Search box 3 start -->
             <div class="search-box-4 sb-8">
-                <form action="#" method="">
+                <form action="{% url 'car:cars' %}" method="GET">
                     <div class="form-group">
-                        <input type="text" name="keyword" placeholder="Search by name" class="form-control">
+                        <input type="text" name="search" value="{{ request.GET.search }}" placeholder="Search by name"
+                               class="form-control">
                     </div>
                     <div class="form-group">
-                        <select class="form-control search-fields" name="select-brand">
-                            <option selected="true" disabled="disabled">Brand</option>
-                            <option>Audi</option>
-                            <option>BMW</option>
-                            <option>Honda</option>
-                            <option>Nissan</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control search-fields" name="select-make">
+                        <select class="form-control search-fields" id="model" name="select-make">
                             <option selected="true" disabled="disabled">Model</option>
-                            <option>BMW</option>
-                            <option>Honda</option>
-                            <option>Lamborghini Huracán</option>
-                            <option>Sports Car</option>
+                            {% for car in cars %}
+                                <option value="{{ car.model }}">{{ car.model }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div class="form-group">
                         <select class="form-control search-fields" name="select-location">
                             <option selected="true" disabled="disabled">Location</option>
-                            <option>United States</option>
-                            <option>United Kingdom</option>
+                            {% for car in cars %}
+                                <option value="{{ cars.city }}">{{ car.city }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div class="form-group">
                         <select class="form-control search-fields" name="select-year">
                             <option selected="true" disabled="disabled">Year</option>
-                            <option>2016</option>
-                            <option>2017</option>
-                            <option>2018</option>
-                            <option>2019</option>
+                            {% for car in cars %}
+                                <option value="{{ car.year }}">{{ car.year }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div class="form-group">
                         <select class="form-control search-fields" name="select-type">
                             <option selected="true" disabled="disabled">Select Type Of Car</option>
-                            <option>Sedan</option>
-                            <option>Sports</option>
-                            <option>Hatchback</option>
-                            <option>Pickup Truck</option>
-                            <option>SUV</option>
+                            {% for car in cars %}
+                                <option value="{{ car.body_style }}">{{ car.body_style }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div class="range-slider clearfix">
@@ -125,9 +111,10 @@
             <!-- Slick slider area start -->
 
             <div class="slick-slider-area clearfix">
-                {% for car in cars %}
-                    <div class="row slick-carousel"
-                         data-slick='{"slidesToShow": 3, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
+
+                <div class="row slick-carousel"
+                     data-slick='{"slidesToShow": 3, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
+                    {% for car in cars %}
                         <div class="slick-slide-item">
                             <div class="car-box-3">
                                 <div class="car-thumbnail">
@@ -192,8 +179,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
+
             </div>
             <div class="slick-btn">
                 <div class="slick-prev slick-arrow-buton sab-4">
